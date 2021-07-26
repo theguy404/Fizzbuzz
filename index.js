@@ -7,20 +7,40 @@ const BUZZ = 5;
 
 //counts to the counter number
 for (let i = 1; i < COUNTER + 1; i++) {
-    let fizzarg = i % FIZZ;
-    let buzzarg = i % BUZZ;
+    let result = [ test(i, FIZZ), test(i, BUZZ) ];
     
     // check if i is equal to a fizz or a buzz or both
-    if(fizzarg == 0 || buzzarg == 0) {
-        if(fizzarg == 0 && buzzarg == 0) {
+    if (result.find(isZero) == 0) {
+        
+        // if the number is a multiple of both then log FizzBuzz
+        if (isZero(result[0]) && isZero(result[1])) {
             console.log("FizzBuzz");
-        } else if (fizzarg == 0) {
+        }
+        
+        // if the number is a mutiple of FIZZ value then log Fizz
+        if (result[0] == 0 && !result[1] == 0) {
             console.log("Fizz");
-        } else if (buzzarg == 0) {
+        }
+        
+        // if the number is a multiple of BUZZ value then log Buzz
+        if (result[1] == 0 && !result[0] == 0) {
             console.log("Buzz");
         }
+        
     // if i is not equal to a fizz or a buzz then log the number
     } else {
         console.log(i);
+    }
+}
+
+function test(input1, input2) {
+    return input1 % input2;
+}
+
+function isZero(input) {
+    if (input == 0) {
+        return true;
+    } else {
+        return false;
     }
 }
